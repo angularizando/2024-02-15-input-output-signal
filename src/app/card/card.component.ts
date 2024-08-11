@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { booleanAttribute, Component, Input, numberAttribute } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -12,27 +12,7 @@ import { Component, Input } from '@angular/core';
   </div>`
 })
 export class CardComponent {
-  @Input({ required: true }) title!: string;
-
-  #price = 0;
-  @Input() set price(value: string | number) { 
-    if (typeof value === 'number') {
-      this.#price = value;
-    } else if (isNaN(Number(value))) {
-      this.#price = 0;
-    } else {
-      this.#price = Number(value);
-    }
-  }
-  get price(): number {
-    return this.#price;
-  }
-
-  #hasDiscount = false;
-  @Input() set hasDiscount(value: string | boolean) {
-    this.#hasDiscount = typeof value === 'boolean' ?  value : true;
-  }
-  get hasDiscount(): boolean {
-    return this.#hasDiscount;
-  }
+  @Input({ transform: (value: string) => value.toLocaleUpperCase() }) title!: string;
+  @Input({ transform: numberAttribute }) price: number = 0;
+  @Input({ transform: booleanAttribute }) hasDiscount: boolean = false;
 }
