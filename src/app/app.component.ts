@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CardComponent } from './card/card.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [CardComponent],
+  template: `
+    <app-card 
+      [title]="title" 
+      price="60" 
+      hasDiscount 
+    />
+  `,
 })
 export class AppComponent {
-  title = 'input-options-signal';
+  title = 'Produto1';
 }
