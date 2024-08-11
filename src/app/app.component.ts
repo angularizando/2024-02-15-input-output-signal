@@ -9,10 +9,11 @@ import { CardComponent } from './card/card.component';
     <app-card 
       [title]="title" 
       price="60" 
-      hasDiscount 
-    />
+      hasDiscount />
   `,
 })
 export class AppComponent {
   title = 'Produto1';
+  price = 20;
+  hasDiscount = true;
 }
